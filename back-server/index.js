@@ -18,16 +18,17 @@ app.use(cors())
 
 app.post("/api/sendmail",(req,res)=>{
  let {data}=req.body
- const transporter = nodemailer.createTransport(smtpTransport({
+ const transporter = nodemailer.createTransport({
     service: 'gmail',
-    host: 'smtp.gmail.com',
+    // host: 'smtp.gmail.com',
     port:465,
     auth: {
       user: 'dammydee40@gmail.com',
       pass: '#Dammy2580'
     }
-  }));
+  });
   
+
   const mailOptions = {
     from: data.email,
     to: 'dammydee40@gmail.com',
@@ -66,6 +67,7 @@ app.post("/api/sendmail",(req,res)=>{
  
 
 })
+
 
 app.listen(process.env.PORT,()=>{
     console.log(`server running on ${process.env.PORT}`)
